@@ -1,0 +1,61 @@
+#components-layout-demo-top-side-2 .logo {
+    width: 120px;
+    height: 31px;
+    background: rgba(255, 255, 255, .2);
+    margin: 16px 28px 16px 0;
+    float: left;
+}
+
+.ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+    background: #00e2a0;
+}
+.ant-menu.ant-menu-dark .ant-menu-item-active{
+    background: #fa5c19;
+    text-decoration: underline;
+}
+
+.intro > h1 {
+    font-weight: bolder;
+    font-size: 32px;
+}
+
+.steps-content{
+    padding: 20px;
+    text-align: justify;
+}
+
+.intro > h4 > span {
+    font-weight: bold;
+    color:#364d79;
+}
+
+.fontSizeIcon{
+    font-size: 24px;
+    padding: 0px 10px;
+}
+
+.fontSizeIcon2{
+    font-size: 84px;
+    padding: 0px 10px;
+}
+
+.Topbar {
+    text-align: right;
+}
+
+.Topbar > ul {
+    display: inline-block;
+    font-weight: bolder;
+}
+
+.ant-carousel .slick-slide {
+    text-align: center;
+    height: 160px;
+    line-height: 160px;
+    background: #364d79;
+    overflow: hidden;
+}
+
+.ant-carousel .slick-slide h3 {
+    color: #fff;
+}
