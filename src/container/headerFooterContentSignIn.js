@@ -2,19 +2,16 @@ import {BackTop, Button, Col, Divider, Form, Icon, Input, Layout, Row} from 'ant
 import React, {Component} from 'react';
 import AvatarComp from "../component/avatar";
 import TopbarComp from "../component/topbar";
+import {connect} from "react-redux";
+import {DATA_ACTIONS} from './../redux/data/actions'
+import Portfolio from "../component/portfolio";
 
+const {get_data} = DATA_ACTIONS
 const {Header, Content, Footer} = Layout;
 const FormItem = Form.Item;
 
 
 class HeaderCFAppSignIn extends Component {
-
-  componentDidMount(){
-      if (localStorage.getItem('status') === 'loggedinAdmin' || localStorage.getItem('status') === 'loggedinUser') {
-          this.props.history.push('/');
-      }
-  }
-
 
     handleChange = (e) => {
         let name = e.target.name;
@@ -23,7 +20,6 @@ class HeaderCFAppSignIn extends Component {
             [name]: value
         })
     }
-
     handleSubmit = (e) => {
 
         alert(this.state.username)
@@ -33,9 +29,37 @@ class HeaderCFAppSignIn extends Component {
         }
     }
 
+    componentDidMount() {
+        if (localStorage.getItem('status') === 'loggedinAdmin' || localStorage.getItem('status') === 'loggedinUser') {
+            this.props.history.push('/');
+        }
+
+        const {get_data} = this.props;
+        get_data();
+        console.log(this.props.data)
+
+    }
+
+    splitdataToArray(d) {
+        let data = d.split('&');
+        let arr = [];
+        for (let j = 0; j < data.length; j++) {
+            let finaldat = data[j].split('%');
+            console.log(finaldat[j])
+            let jsn = {}
+            for (let i = 0; i < finaldat.length; i++) {
+                jsn[finaldat[i].split('$')[0]] = finaldat[i].split('$')[1]
+            }
+            arr.push(jsn)
+        }
+        // alert(arr[2])
+        console.log("big split");
+        console.log(data)
+        return arr;
+    }
 
     render() {
-
+        const datas = this.props.data ? this.props.data.get('webdata') : {}
         return (
             <Layout className="layout">
                 <BackTop/>
@@ -73,7 +97,9 @@ class HeaderCFAppSignIn extends Component {
                         <Divider>KEEP IN TOUCH</Divider>
                         <Row>
                             <Col span={12}>
-                                <AvatarComp/></Col>
+                                {datas && <AvatarComp data1={datas.image1} data2={datas.image2} data3={datas.image3}
+                                                      data4={datas.image4} data5={datas.image5} data6={datas.image6}
+                                                      data7={datas.image7} data8={datas.image8} /> }</Col>
                             <Col span={12} className="intro">
                                 <h1>ABDULLA THANSEEH</h1>
                                 <p><a href=""><Icon type="github" className="fontSizeIcon"/></a><a href=""><Icon
@@ -97,4 +123,8 @@ class HeaderCFAppSignIn extends Component {
     }
 }
 
-export default HeaderCFAppSignIn;
+export default connect(state => ({
+    data: state.data
+}), {
+    get_data
+})(HeaderCFAppSignIn)

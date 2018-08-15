@@ -30,7 +30,7 @@ export default class CardComp extends Component {
                     <Card
                         hoverable
                         style={{width: 240}}
-                        cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
+                        cover={<img alt="project" src={data.url?data.url:"http://www.bollywoodlife.com/wp-content/uploads/2018/08/bigg-boss-12.jpg"}/>}
                     >
                         <Meta
                             title={data.name}

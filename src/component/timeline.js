@@ -18,7 +18,7 @@ export default class TimelineComp extends Component {
 
                 <Timeline>
                     {this.timelineValues.map(data =>
-                        <Timeline.Item>{data.title}</Timeline.Item>)
+                        <Timeline.Item><b>{data.title}</b></Timeline.Item>)
                     }
                     </Timeline>
             </div>

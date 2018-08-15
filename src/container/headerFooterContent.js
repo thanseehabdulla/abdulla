@@ -10,6 +10,7 @@ import Icon from "antd/es/icon/index";
 import TopbarComp from "../component/topbar";
 import {connect} from "react-redux";
 import {DATA_ACTIONS} from './../redux/data/actions'
+import Portfolio from "../component/portfolio";
 const {get_data} = DATA_ACTIONS
 const {Header, Content, Footer} = Layout;
 
@@ -91,21 +92,27 @@ class HeaderCFApp extends Component {
     }
 
 
-
-
-    splitdataToArray(d){
-        let data = d.split(',');
+    splitdataToArray(d) {
+        let data = d.split('&');
         let arr = [];
-        data.map(dat=>{
-            arr.push(dat)
-        })
+        for (let j = 0; j < data.length; j++) {
+            let finaldat = data[j].split('%');
+            console.log(finaldat[j])
+            let jsn = {}
+            for (let i = 0; i < finaldat.length; i++) {
+                jsn[finaldat[i].split('$')[0]] = finaldat[i].split('$')[1]
+            }
+            arr.push(jsn)
+        }
+        // alert(arr[2])
+        console.log("big split");
+        console.log(data)
         return arr;
     }
 
 
     render() {
         const datas = this.props.data ? this.props.data.get('webdata') : {}
-        const overview = this.props.data ? this.splitdataToArray(datas.get(overview)) : {}
 
         return (
             <Layout className="layout">
@@ -119,63 +126,72 @@ class HeaderCFApp extends Component {
                             <Col span={12}>
                                 {/*<BadgeComp/>*/}
                                 <br/>
-                                <AvatarComp/></Col>
-                            <Col span={12} className="intro">
-                                <h1>{datas ? datas.username :'ABDULLA THANSEEH'}</h1>
-                                <p><a href=""><Icon type="github" className="fontSizeIcon"/></a><a href=""><Icon
+                                {datas && <AvatarComp data1={datas.image1} data2={datas.image2} data3={datas.image3}
+                                                      data4={datas.image4} data5={datas.image5} data6={datas.image6}
+                                                      data7={datas.image7} data8={datas.image8} /> } </Col>
+                                    <Col span={12} className="intro">
+                                    <h1>{datas ? datas.username : 'ABDULLA THANSEEH'}</h1>
+                                    <p><a href="https://github.com/thanseehabdulla" ><Icon type="github" className="fontSizeIcon"/></a><a href="https://www.linkedin.com/in/thanseeh-abdulla-ab78aba2/"><Icon
                                     type="linkedin" className="fontSizeIcon"/></a><a
-                                    href=""><Icon type="skype" className="fontSizeIcon"/></a><a href=""><Icon
+                                    href=""><Icon type="skype" className="fontSizeIcon"/></a><a href="https://www.facebook.com/thanseeh.abdulla.35"><Icon
                                     type="facebook"
                                     className="fontSizeIcon"/></a><a
-                                    href=""><Icon type="instagram" className="fontSizeIcon"/></a></p>
-                                <h4>{datas ? datas.address :'Cochin,IND'} <span>{datas ? datas.website :'https://abdullathanseeh.ga'}</span></h4>
-                                <h2>{datas ? datas.position :'Software Developer (3+ exp)'}</h2>
-                                <h4>{datas ? datas.worksAt :'WORKS AT SIME LABS'}</h4>
-                            </Col>
-                        </Row>
+                                    href="https://www.instagram.com/thanseeh_abdulla/?hl=en"><Icon type="instagram" className="fontSizeIcon"/></a></p>
+                                    <h4>{datas ? datas.address : 'Cochin,IND'} <span>{datas ? datas.website : 'https://abdullathanseeh.ga'}</span></h4>
+                                    <h2>{datas ? datas.position : 'Software Developer (3+ exp)'}</h2>
+                                    <h4>{datas ? datas.worksAt : 'WORKS AT SIME LABS'}</h4>
+                                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=someone@example.com&su=ATSSTUDIOS&body=GREETINGFROMATS&bcc=thanseehabdulla@gmail.com">{datas ? datas.email : 'WORKS AT SIME LABS'}</a>
+                                    </Col>
+                                    </Row>
 
-                        <Divider orientation="right">Overview</Divider>
-                        <StepComp steps={overview ? overview:steps}/>
+                                    <Divider orientation="right">Overview</Divider>
+                                {datas && <StepComp steps={this.splitdataToArray((datas.overview))}/>}
+                                <Portfolio/>
+                                    <Divider orientation="left">WORK HISTORY</Divider>
+                                {datas && <TimelineComp timelineValues={this.splitdataToArray((datas.workhistory))}/>}
+                                    <Divider orientation="left">TOP 5 FREELANCE WORK</Divider>
+                                {datas && <TimelineComp timelineValues={this.splitdataToArray((datas.topfreelance))}/>}
+                                    <Divider orientation="left">APPRECIATIONS</Divider>
+                                {datas && <CarousalComp contents={this.splitdataToArray((datas.appreciation))}/>}
+                                    <Divider orientation="left">PROJECT WORKS</Divider>
+                                {datas && <AutoAdjustTabComp content={this.splitdataToArray((datas.project))}/>}
+                                    <Divider orientation="left">TOP PROJECT LINKS</Divider>
+                                {datas &&<CardComp content={this.splitdataToArray((datas.topproject))}/>}
+                                    <Divider>KEEP IN TOUCH</Divider>
+                                    <Row>
+                                    <Col span={12}>
+                                        {datas && <AvatarComp data1={datas.imageb1} data2={datas.imageb2} data3={datas.imageb3}
+                                                              data4={datas.imageb4} data5={datas.imageb5} data6={datas.imageb6}
+                                                              data7={datas.imageb7} data8={datas.imageb8} /> } </Col>
+                                    <Col span={12} className="intro">
+                                    <h1>{datas ? datas.username : 'ABDULLA THANSEEH'}</h1>
+                                    <p><a href="https://github.com/thanseehabdulla" ><Icon type="github" className="fontSizeIcon"/></a><a href="https://www.linkedin.com/in/thanseeh-abdulla-ab78aba2/"><Icon
+                                    type="linkedin" className="fontSizeIcon"/></a><a
+                                    href=""><Icon type="skype" className="fontSizeIcon"/></a><a href="https://www.facebook.com/thanseeh.abdulla.35"><Icon
+                                    type="facebook"
+                                    className="fontSizeIcon"/></a><a
+                                    href="https://www.instagram.com/thanseeh_abdulla/?hl=en"><Icon type="instagram" className="fontSizeIcon"/></a></p>
+                                    <h4>{datas ? datas.address : 'Cochin,IND'} <span>{datas ? datas.website : 'https://abdullathanseeh.ga'}</span></h4>
+                                    <h2>{datas ? datas.position : 'Software Developer (3+ exp)'}</h2>
+                                    <h4>{datas ? datas.worksAt : 'WORKS AT SIME LABS'}</h4>
+                                    <h4>{datas ? datas.mobile : 'WORKS AT SIME LABS'}</h4>
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=someone@example.com&su=ATSSTUDIOS&body=GREETINGFROMATS&bcc=thanseehabdulla@gmail.com">{datas ? datas.email : 'WORKS AT SIME LABS'}</a>
+                                    </Col>
+                                    </Row>
+                                    </div>
 
-                        <Divider orientation="left">WORK HISTORY</Divider>
-                        <TimelineComp timelineValues={timelineValues}/>
-                        <Divider orientation="left">TOP 5 FREELANCE WORK</Divider>
-                        <TimelineComp timelineValues={timelineValues}/>
-                        <Divider orientation="left">APPRECIATIONS</Divider>
-                        <CarousalComp contents={contents}/>
-                        <Divider orientation="left">PROJECT WORKS</Divider>
-                        <AutoAdjustTabComp content={tabContent}/>
-                        <Divider orientation="left">TOP PROJECT LINKS</Divider>
-                        <CardComp content={projectContent}/>
-                        <Divider>KEEP IN TOUCH</Divider>
-                        <Row>
-                            <Col span={12}>
-                                <AvatarComp/></Col>
-                            <Col span={12} className="intro">
-                                <h1>ABDULLA THANSEEH</h1>
-                                <p><a href=""><Icon type="github" className="fontSizeIcon"/></a><a href=""><Icon
-                                    type="github" className="fontSizeIcon"/></a><a href=""><Icon type="github"
-                                                                                                 className="fontSizeIcon"/></a><a
-                                    href=""><Icon type="github" className="fontSizeIcon"/></a></p>
-                                <h4>Cochin,IND <span>https://abdullathanseeh.ga</span></h4>
-                                <h4>+91 9847444106</h4>
-                                <h4>thanseehabdulla@gmail.com</h4>
-                            </Col>
-                        </Row>
-                    </div>
 
+                                    </Content>
+                                    <Footer style={{textAlign: 'center'}}>
+                                    Abdulla Thanseeh ©2018 Created by ATS Studios
+                                    </Footer>
+                                    </Layout>
+                                    );
+                                }
+                                }
 
-                </Content>
-                <Footer style={{textAlign: 'center'}}>
-                    Abdulla Thanseeh ©2018 Created by ATS Studios
-                </Footer>
-            </Layout>
-        );
-    }
-}
-
-export default connect(state => ({
-    data: state.data
-}), {
-    get_data
-})(HeaderCFApp)
+                                export default connect(state => ({
+                                data: state.data
+                            }), {
+                                get_data
+                            })(HeaderCFApp)

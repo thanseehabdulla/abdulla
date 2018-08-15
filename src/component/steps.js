@@ -15,6 +15,7 @@ const steps = [{
 }];
 
 export default class StepComp extends Component {
+    steps=[];
     constructor(props) {
                 super(props);
                 this.state = {

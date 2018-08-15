@@ -7,34 +7,64 @@
 }
 
 .ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
-    background: #00e2a0;
+    background: #364d79;
 }
-.ant-menu.ant-menu-dark .ant-menu-item-active{
+
+.ant-menu.ant-menu-dark .ant-menu-item-active {
     background: #fa5c19;
     text-decoration: underline;
+}
+
+.intro {
+    color: #364d79;
 }
 
 .intro > h1 {
     font-weight: bolder;
     font-size: 32px;
+    color: black;
+    margin-bottom: 7px;
 }
 
-.steps-content{
+.intro > p,h2,h4 {
+    margin-bottom: 7px;
+}
+
+.ant-timeline-item-head-blue {
+    border-color: #364d79;
+    color: #364d79;
+}
+
+.ant-steps-item-process .ant-steps-item-icon {
+    background: #364d79;
+}
+
+.steps-content {
     padding: 20px;
     text-align: justify;
 }
 
-.intro > h4 > span {
-    font-weight: bold;
-    color:#364d79;
+.ant-btn-primary {
+    color: #fff;
+    background-color: #364d79;
+    border-color: #364d79;
 }
 
-.fontSizeIcon{
+.ant-steps-item-process .ant-steps-item-icon {
+    border-color: #364d79;
+}
+
+.intro > h4 > span {
+    font-weight: bold;
+    color: #364d79;
+}
+
+.fontSizeIcon {
     font-size: 24px;
     padding: 0px 10px;
 }
 
-.fontSizeIcon2{
+.fontSizeIcon2 {
     font-size: 84px;
     padding: 0px 10px;
 }

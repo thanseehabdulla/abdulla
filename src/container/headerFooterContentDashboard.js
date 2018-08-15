@@ -71,7 +71,9 @@ class HeaderCFAppDashboard extends Component {
                         <Row>
                             <Col span={12}>
                                 <br/><br/>
-                                <AvatarComp/></Col>
+                                {datas && <AvatarComp data1={datas.image1} data2={datas.image2} data3={datas.image3}
+                                            data4={datas.image4} data5={datas.image5} data6={datas.image6}
+                                            data7={datas.image7} data8={datas.image8} /> }</Col>
                             <Col span={12} className="intro">
                                 <h1>HELLO ABDULLA, How is the day going today?</h1>
                                 <p><a href=""><Icon type="android" className="fontSizeIcon2"/></a><a href=""><Icon
@@ -86,7 +88,13 @@ class HeaderCFAppDashboard extends Component {
                                     app.</h4>
                             </Col>
                         </Row>
+                        <Divider orientation="left">VIDEO DATA</Divider>
+                        <Row>
+                            <Col span={24}><Input placeholder="projects json" name="homevideos"
+                                                  onBlur={this.changeData.bind(this)} autosize={{minRows: 5}}
+                                                  defaultValue={datas ? datas.homevideos : ''} required/></Col>
 
+                        </Row>
                         <Divider orientation="left">CHANGE DATA</Divider>
                         <Row>
                             <Col span={12}><Input placeholder="Name" name="name"
