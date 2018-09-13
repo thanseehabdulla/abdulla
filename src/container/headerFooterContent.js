@@ -11,6 +11,8 @@ import TopbarComp from "../component/topbar";
 import {connect} from "react-redux";
 import {DATA_ACTIONS} from './../redux/data/actions'
 import Portfolio from "../component/portfolio";
+import Avatar from "antd/es/avatar/index";
+import Button from "antd/es/button/button";
 const {get_data} = DATA_ACTIONS
 const {Header, Content, Footer} = Layout;
 
@@ -115,21 +117,27 @@ class HeaderCFApp extends Component {
         const datas = this.props.data ? this.props.data.get('webdata') : {}
 
         return (
+            <div className="container">
             <Layout className="layout">
                 <BackTop/>
-                <TopbarComp/>
+                {window.innerWidth > 768 && <TopbarComp/>}
                 <Content style={{padding: '0 50px'}}>
                     <br/>
                     <div style={{background: '#fff', padding: 24, minHeight: 280}}>
                         <Divider orientation="left">ABOUT MYSELF</Divider>
-                        <Row>
-                            <Col span={12}>
+                        <Row align="middle" justify="center">
+                            <Col sm={24} lg={12}>
                                 {/*<BadgeComp/>*/}
                                 <br/>
-                                {datas && <AvatarComp data1={datas.image1} data2={datas.image2} data3={datas.image3}
+                                {window.innerWidth > 768 && datas && <AvatarComp data1={datas.image1} data2={datas.image2} data3={datas.image3}
                                                       data4={datas.image4} data5={datas.image5} data6={datas.image6}
-                                                      data7={datas.image7} data8={datas.image8} /> } </Col>
-                                    <Col span={12} className="intro">
+                                                      data7={datas.image7} data8={datas.image8} /> }
+
+                                {window.innerWidth <= 768 && datas && <Avatar size={164} src={datas.image1} /> }
+
+
+                                                      </Col>
+                                    <Col sm={24} lg={12} className="intro">
                                     <h1>{datas ? datas.username : 'ABDULLA THANSEEH'}</h1>
                                     <p><a href="https://github.com/thanseehabdulla" ><Icon type="github" className="fontSizeIcon"/></a><a href="https://www.linkedin.com/in/thanseeh-abdulla-ab78aba2/"><Icon
                                     type="linkedin" className="fontSizeIcon"/></a><a
@@ -141,24 +149,39 @@ class HeaderCFApp extends Component {
                                     <h2>{datas ? datas.position : 'Software Developer (3+ exp)'}</h2>
                                     <h4>{datas ? datas.worksAt : 'WORKS AT SIME LABS'}</h4>
                                         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=someone@example.com&su=ATSSTUDIOS&body=GREETINGFROMATS&bcc=thanseehabdulla@gmail.com">{datas ? datas.email : 'WORKS AT SIME LABS'}</a>
+
+
                                     </Col>
+                            {window.innerWidth <= 768 && <Button onClick={()=>{window.location.href = datas?datas.cv:"https://www.slideshare.net/slideshow/embed_code/key/BSM5vh02t9pUMl"}}>GENERATE MY CV</Button>}
                                     </Row>
 
                                     <Divider orientation="right">Overview</Divider>
+                        <Col sm={24} lg={24}>
                                 {datas && <StepComp steps={this.splitdataToArray((datas.overview))}/>}
                                 <Portfolio/>
+                        </Col>
+                        <Col sm={24} lg={24} className="intro">
                                     <Divider orientation="left">WORK HISTORY</Divider>
                                 {datas && <TimelineComp timelineValues={this.splitdataToArray((datas.workhistory))}/>}
+                        </Col>
+
                                     <Divider orientation="left">TOP 5 FREELANCE WORK</Divider>
                                 {datas && <TimelineComp timelineValues={this.splitdataToArray((datas.topfreelance))}/>}
                                     <Divider orientation="left">APPRECIATIONS</Divider>
                                 {datas && <CarousalComp contents={this.splitdataToArray((datas.appreciation))}/>}
+                        <Col sm={24} lg={24}>
+                            <br/>
                                     <Divider orientation="left">PROJECT WORKS</Divider>
                                 {datas && <AutoAdjustTabComp content={this.splitdataToArray((datas.project))}/>}
-                                    <Divider orientation="left">TOP PROJECT LINKS</Divider>
+                        </Col>
+                        <br/>
+                        {window.innerWidth > 768 && <Divider orientation="left">TOP PROJECT LINKS</Divider>}
+                        {window.innerWidth > 768 &&  <Col sm={24} lg={24}>
                                 {datas &&<CardComp content={this.splitdataToArray((datas.topproject))}/>}
-                                    <Divider>KEEP IN TOUCH</Divider>
-                                    <Row>
+                        </Col>}
+                        <br/>
+                                <Divider>KEEP IN TOUCH</Divider>
+                        {window.innerWidth > 768 && <Row>
                                     <Col span={12}>
                                         {datas && <AvatarComp data1={datas.imageb1} data2={datas.imageb2} data3={datas.imageb3}
                                                               data4={datas.imageb4} data5={datas.imageb5} data6={datas.imageb6}
@@ -177,7 +200,7 @@ class HeaderCFApp extends Component {
                                     <h4>{datas ? datas.mobile : 'WORKS AT SIME LABS'}</h4>
                                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=someone@example.com&su=ATSSTUDIOS&body=GREETINGFROMATS&bcc=thanseehabdulla@gmail.com">{datas ? datas.email : 'WORKS AT SIME LABS'}</a>
                                     </Col>
-                                    </Row>
+                                    </Row>}
                                     </div>
 
 
@@ -186,6 +209,7 @@ class HeaderCFApp extends Component {
                                     Abdulla Thanseeh ©2018 Created by ATS Studios
                                     </Footer>
                                     </Layout>
+            </div>
                                     );
                                 }
                                 }

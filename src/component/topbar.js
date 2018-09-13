@@ -55,11 +55,11 @@ class TopbarComp extends Component {
                         {(localStorage.getItem('status') === 'loggedinAdmin') &&
                         <Menu.Item key="7"><a href="/admindashboard">DASHBOARD</a></Menu.Item>}
                         <Menu.Item key="1"><a href="/ats">ATS</a></Menu.Item>
-                        <Menu.Item key="8"><a href="/https://github.com/thanseehabdulla">GITHUB</a></Menu.Item>
+                        <Menu.Item key="8"><a href="https://github.com/thanseehabdulla">GITHUB</a></Menu.Item>
                         <Menu.Item key="5"><a href={datas?datas.cv:"https://www.slideshare.net/slideshow/embed_code/key/BSM5vh02t9pUMl"}>GENERATE MY CV</a></Menu.Item>
                         {!(localStorage.getItem('status') === 'loggedinAdmin' || localStorage.getItem('status') === 'loggedinUser') &&
                         <Menu.Item key="2"><a href="/signin">SIGN IN</a></Menu.Item>}
-                        <Menu.Item key="3">GET YOUR OWN</Menu.Item>
+                        <Menu.Item key="3"><a href="/ats">GET YOUR OWN</a></Menu.Item>
                         {(localStorage.getItem('status') === 'loggedinAdmin' || localStorage.getItem('status') === 'loggedinUser') &&
                         <Menu.Item key="6" onClick={this.logout.bind(this)}>LOG OUT</Menu.Item>}
                     </Menu>

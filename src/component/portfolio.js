@@ -50,13 +50,16 @@ class Portfolio extends Component {
                 <div className="container">
                     <div className="row">
 
-                        <div className="col-lg-12 text-center">
+                        <div className="col-sm-24 col-lg-12 text-center">
                             <h2 style={{color:'white',textWeight:'bold'}}>VIDEO GALLERY</h2>
                             {/*<hr className="star-primary"/>*/}
-                        </div>
+                            <div className="container">
+                            {datas && <Carousel slides={slides2} autoplay={true}/>}
+                            {!datas && <Carousel slides={slides} autoplay={true}/>}
+                            </div>
+                            </div>
                     </div>
-                    {datas && <Carousel slides={slides2} autoplay={true}/>}
-                    {!datas && <Carousel slides={slides} autoplay={true}/>}
+
 
                 </div>
 

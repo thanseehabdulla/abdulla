@@ -41,7 +41,7 @@ export default class StepComp extends Component {
                 <Steps current={current}>
                 {this.steps.map(item => <Step key={item.title} title={item.title} />)}
                 </Steps>
-                <div className="steps-content">{this.steps[current].content}</div>
+                    <div className="steps-content"><p>{this.steps[current].content}</p></div>
                 <div className="steps-action">
                 {
                     current < this.steps.length - 1

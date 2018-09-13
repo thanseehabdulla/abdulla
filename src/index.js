@@ -6,6 +6,6 @@ import registerServiceWorker from './registerServiceWorker';
 import './App.css';
 import 'antd/dist/antd.css';
 import './css/common.css'
-
+import {MediaQuery} from "react-responsive";
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
